@@ -4,11 +4,12 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\ServiceCategory;
 use Livewire\Component;
-/* use Livewire\WithPagination; */
+use Livewire\WithPagination;
 
 class AdminServiceCategoryComponent extends Component
 {
-    /* use WithPagination; */
+    
+    use WithPagination;
     public function render()
     {
         $scategories = ServiceCategory::paginate(10);
