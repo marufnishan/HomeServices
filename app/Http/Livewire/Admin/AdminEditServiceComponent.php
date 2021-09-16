@@ -28,6 +28,8 @@ class AdminEditServiceComponent extends Component
     public $newthumbnail;
     public $newimage;
     public $service_id;
+    
+    public $featured;
 
     public function mount($service_slug){
         $service = Service::Where('slug',$service_slug)->first();
@@ -39,6 +41,7 @@ class AdminEditServiceComponent extends Component
         $this->price = $service->price;
         $this->discount = $service->discount;
         $this->discount_type = $service->discount_type;
+        $this->featured = $service->featured;
         $this->image = $service->image;
         $this->thumbnail = $service->thumbnail;
         $this->description = $service->description;
@@ -111,6 +114,7 @@ class AdminEditServiceComponent extends Component
         $service->price = $this->price;
         $service->discount = $this->discount;
         $service->discount_type = $this->discount_type;
+        $service->featured = $this->featured;
         $service->description = $this->description;
         $service->inclusion = str_replace("\n",'|',trim($this->inclusion));
         $service->exclusion = str_replace("\n",'|',trim($this->exclusion));
