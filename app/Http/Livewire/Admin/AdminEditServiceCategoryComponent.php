@@ -17,12 +17,15 @@ class AdminEditServiceCategoryComponent extends Component
     public $image;
     public $newimage;
 
+    public $featured;
+
     public function mount($category_id){
         $scategory = ServiceCategory::find($category_id);
         $this->category_id = $scategory->id;
         $this->name = $scategory->name;
         $this->slug = $scategory->slug;
         $this->image = $scategory->image;
+        $this->featured = $scategory->featured;
     }
 
     public function generateSlug()
@@ -67,7 +70,8 @@ class AdminEditServiceCategoryComponent extends Component
             $imagName = Carbon::now()->timestamp. '.' . $this->newimage->extension();
             $this->newimage->storeAs('categories',$imagName);
             $scategory->image = $imagName;
-        }       
+        } 
+        $scategory->featured = $this->featured;      
         $scategory->save();
         session()->flash('message','Category has been updated successfully!');
     }
